@@ -14,10 +14,10 @@ char TracingRun(void)
 		ctrl_comm = COMM_FORWARD;
 	//黑白 右转
 	else if (READ_TRACING_L == BLACK_AREA && READ_TRACING_R == WHITE_AREA)
-		ctrl_comm = COMM_RIGHT;
+		ctrl_comm = COMM_SPIN_RIGHT;
 	//白黑 左转
 	else if (READ_TRACING_L == WHITE_AREA && READ_TRACING_R == BLACK_AREA)
-		ctrl_comm = COMM_LEFT;
+		ctrl_comm = COMM_SPIN_LEFT;
 	else ctrl_comm = COMM_BRAKE;
 	
 ////中间单线

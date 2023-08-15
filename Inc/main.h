@@ -69,6 +69,8 @@ void Error_Handler(void);
 #define Beeper_GPIO_Port GPIOC
 #define Tracing_R_Pin GPIO_PIN_0
 #define Tracing_R_GPIO_Port GPIOA
+#define Speed_Right_Pin GPIO_PIN_1
+#define Speed_Right_GPIO_Port GPIOA
 #define Right_Motor_Pin GPIO_PIN_4
 #define Right_Motor_GPIO_Port GPIOA
 #define Servo_Pitch_PWM_Pin GPIO_PIN_6
@@ -79,6 +81,8 @@ void Error_Handler(void);
 #define Tracing_L_GPIO_Port GPIOB
 #define Servo_Pan_PWM_Pin GPIO_PIN_1
 #define Servo_Pan_PWM_GPIO_Port GPIOB
+#define Speed_Left_Pin GPIO_PIN_8
+#define Speed_Left_GPIO_Port GPIOA
 #define Left_Motor_Pin GPIO_PIN_7
 #define Left_Motor_GPIO_Port GPIOB
 #define Left_Motor_PWM_Pin GPIO_PIN_8

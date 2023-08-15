@@ -106,11 +106,14 @@ int main(void)
   MX_TIM3_Init();
   MX_USART2_UART_Init();
   MX_TIM2_Init();
+  MX_TIM1_Init();
+  MX_TIM5_Init();
+  MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_3);
 	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_4);
-	//HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
 	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4);
 	
 	HAL_UART_Receive_IT(&huart2,(uint8_t *)&USART2_RX_BUFF, 1);//开启接收中断
@@ -123,7 +126,7 @@ int main(void)
 	SetJointAngle(Servo_Ultrasonic,93);
 	SetJointAngle(Servo_Pan,pan_angle);
 	SetJointAngle(Servo_Pitch,pitch_angle);
-	printf("hello\n");
+	printf("Hello\n");
   while (1)
   {
 		UltrasonicWave_StartMeasure();
@@ -193,6 +196,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		//每一次计数为1us
 			UltrasonicWave_Distance=(float)__HAL_TIM_GET_COUNTER(&htim2)*17/1000.0;//计算距离，单位为cm
 	} 
+	//printf("distance: %.2f/n",UltrasonicWave_Distance);
 	if (UltrasonicWave_Distance<=8.0)
 	{
 	Error_Handler();
@@ -212,8 +216,25 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		//printf("%s!\n",USART2_RX);
 		HAL_UART_Receive_IT(&huart2, (uint8_t *)&USART2_RX_BUFF, 1);   //再开启接收中断
 	}
-	
-	
+}
+
+//定时计数器8溢出中断服务程序
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	int count_left = 0;
+	int count_right = 0;	
+    
+    if(htim==&htim8)
+    {
+        count_left = __HAL_TIM_GET_COUNTER(&htim1); 
+			  count_right = __HAL_TIM_GET_COUNTER(&htim5); 
+				__HAL_TIM_SET_COUNTER(&htim8, 0);
+				__HAL_TIM_SET_COUNTER(&htim1, 0);
+				__HAL_TIM_SET_COUNTER(&htim5, 0);
+
+    }
+
+
 }
 /* USER CODE END 4 */
 

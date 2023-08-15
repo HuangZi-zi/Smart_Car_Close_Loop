@@ -126,11 +126,14 @@ void spin_right(signed char speed,int time) //右旋转函数
 		HAL_Delay(time);                    //时间为毫秒  
 }
 
-//#define COMM_BRAKE  		'F'//停止
+//#define COMM_BRAKE  		'E'//停止
 //#define COMM_FORWARD    'A'//前进
 //#define COMM_BACK  			'B'//后退
 //#define COMM_LEFT  			'C'//左转
 //#define COMM_RIGHT 			'D'//右转
+//#define COMM_SPIN_LEFT	'F'//左旋转
+//#define COMM_SPIN_RIGHT	'G'//右旋转
+
 void command_run(char ctrl_comm, int speed)
 {
 		switch(ctrl_comm)
@@ -140,6 +143,8 @@ void command_run(char ctrl_comm, int speed)
 			case COMM_LEFT:  			turn_left(speed+20,30);break;
 			case COMM_RIGHT: 			turn_right(speed+20,30);break;
 			case COMM_BRAKE:  		brake(30);break;
+			case COMM_SPIN_LEFT:	spin_left(speed+10,30);break;
+			case COMM_SPIN_RIGHT:	spin_right(speed+10,30);break;
 			case 'L':							pan_left();break;
 			case 'I':							pan_right();break;
 			case 'J':							pitch_up();break;
