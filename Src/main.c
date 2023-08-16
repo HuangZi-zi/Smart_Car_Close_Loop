@@ -110,13 +110,20 @@ int main(void)
   MX_TIM5_Init();
   MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
+	//开启PWM
 	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_3);
 	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_4);
 	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
 	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4);
 	
+	//开启中断
 	HAL_UART_Receive_IT(&huart2,(uint8_t *)&USART2_RX_BUFF, 1);//开启接收中断
+	HAL_TIM_Base_Start_IT(&htim8);//1s一次中断
+	
+	//开启输入捕获
+	HAL_TIM_IC_Start(&htim1,TIM_CHANNEL_1);
+	HAL_TIM_IC_Start(&htim5,TIM_CHANNEL_2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -231,10 +238,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 				__HAL_TIM_SET_COUNTER(&htim8, 0);
 				__HAL_TIM_SET_COUNTER(&htim1, 0);
 				__HAL_TIM_SET_COUNTER(&htim5, 0);
-
+			printf("left:%d,right:%d\n",count_left,count_right);
     }
-
-
 }
 /* USER CODE END 4 */
 
