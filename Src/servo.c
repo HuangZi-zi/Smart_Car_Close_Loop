@@ -9,6 +9,14 @@
 //用于控制舵机的PWM频率50HZ， 周期20ms (Tim5 Chn1)
 //对应可调的占空比为2.5%～12.5%
 //对应的比较值为100~500
+
+void Servo_PWM_Start()
+{
+	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
+	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4);
+}
+
 void SetJointAngle(int ID,float angle)
 {
 	angle=(uint16_t)(20.0*angle/9.0+100.0);

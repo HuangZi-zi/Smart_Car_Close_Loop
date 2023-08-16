@@ -1,5 +1,12 @@
 #include "motor.h"
 
+//开启PWM输出
+void Motor_PWM_Start()
+{
+	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_3);
+	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_4);
+}
+
 //严谨的PWM调速应当将PWM施加到使能端
 //L298N的真值表如下：
 //ENA		IN1		IN2		STATUE

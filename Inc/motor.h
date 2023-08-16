@@ -7,6 +7,7 @@
 #include "servo.h"
 
 //º¯ÊıÉùÃ÷
+void Motor_PWM_Start(void);
 void SetMotorSpeed(unsigned char ucChannel,signed char cSpeed);
 void forward(signed char speed, int time);
 void back(signed char speed,int time);

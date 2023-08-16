@@ -35,6 +35,7 @@
 #include "UltrasonicWave.h"
 #include "stdio.h"
 #include "WIFI_Command.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -110,16 +111,9 @@ int main(void)
   MX_TIM5_Init();
   MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
-	//开启PWM
-	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_3);
-	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_4);
-	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
-	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
-	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4);
-	
 	//开启中断
 	HAL_UART_Receive_IT(&huart2,(uint8_t *)&USART2_RX_BUFF, 1);//开启接收中断
-	HAL_TIM_Base_Start_IT(&htim8);//1s一次中断
+	HAL_TIM_Base_Start_IT(&htim8);//开启测速中断
 	
 	//开启输入捕获
 	HAL_TIM_IC_Start(&htim1,TIM_CHANNEL_1);
@@ -129,7 +123,9 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	brake(50);
+	Motor_PWM_Start();
 	keyscan();
+	Servo_PWM_Start();
 	SetJointAngle(Servo_Ultrasonic,93);
 	SetJointAngle(Servo_Pan,pan_angle);
 	SetJointAngle(Servo_Pitch,pitch_angle);
@@ -230,15 +226,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	int count_left = 0;
 	int count_right = 0;	
-    
+
     if(htim==&htim8)
     {
-        count_left = __HAL_TIM_GET_COUNTER(&htim1); 
-			  count_right = __HAL_TIM_GET_COUNTER(&htim5); 
+        count_left = __HAL_TIM_GET_COUNTER(&htim1)*4; 
+			  count_right = __HAL_TIM_GET_COUNTER(&htim5)*4; 
 				__HAL_TIM_SET_COUNTER(&htim8, 0);
 				__HAL_TIM_SET_COUNTER(&htim1, 0);
 				__HAL_TIM_SET_COUNTER(&htim5, 0);
-			printf("left:%d,right:%d\n",count_left,count_right);
+			printf("left: %d, right: %d\n",count_left,count_right);
     }
 }
 /* USER CODE END 4 */
