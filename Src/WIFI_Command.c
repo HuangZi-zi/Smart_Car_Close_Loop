@@ -1,10 +1,12 @@
 #include "WIFI_Command.h"
 
-//#define COMM_BRAKE  		'I'//停止
+//#define COMM_BRAKE  		'E'//停止
 //#define COMM_FORWARD    'A'//前进
 //#define COMM_BACK  			'B'//后退
 //#define COMM_LEFT  			'C'//左转
 //#define COMM_RIGHT 			'D'//右转
+//#define COMM_SPIN_LEFT	'F'//左旋转
+//#define COMM_SPIN_RIGHT	'G'//右旋转
 
 char receive_command()
 {

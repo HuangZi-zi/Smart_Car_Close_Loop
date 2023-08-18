@@ -140,9 +140,9 @@ int main(void)
 		//printf("%f\n",UltrasonicWave_Distance);
 		//HAL_Delay(500);
 
-		command_run(TracingRun(),40);
+		//command_run(TracingRun(),40);
 		//receive_command();
-		//command_run(receive_command(),70);
+		command_run(receive_command(),50);
 	}
   /* USER CODE END 3 */
 }
@@ -202,7 +202,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	//printf("distance: %.2f/n",UltrasonicWave_Distance);
 	if (UltrasonicWave_Distance<=8.0)
 	{
-	Error_Handler();
+		//Error_Handler_Distance();
+		BEEPER_SET;
+		brake(500);
+		BEEPER_RESET;
 	}
 }
 
@@ -237,6 +240,17 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			printf("left: %d, right: %d\n",count_left,count_right);
     }
 }
+
+void Error_Handler_Distance(void)
+{
+	while(1)
+	{
+		BEEPER_SET;
+		brake(500);
+		BEEPER_RESET;
+		brake(500);
+	}
+}
 /* USER CODE END 4 */
 
 /**
@@ -249,10 +263,8 @@ void Error_Handler(void)
   /* User can add his own implementation to report the HAL error return state */
 	while(1)
 	{
+		brake(1);
 		BEEPER_SET;
-		brake(500);
-		BEEPER_RESET;
-		brake(500);
 	}
 	
   /* USER CODE END Error_Handler_Debug */

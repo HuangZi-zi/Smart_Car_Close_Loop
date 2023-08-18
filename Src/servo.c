@@ -38,7 +38,7 @@ void SetJointAngle(int ID,float angle)
 
 //云台舵机控制
 int pan_angle = 80;
-int pitch_angle = 15;
+int pitch_angle = 5;
 
 void pan_left()//左右舵机靠左
 {
