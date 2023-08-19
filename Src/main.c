@@ -126,7 +126,7 @@ int main(void)
 	Motor_PWM_Start();
 	keyscan();
 	Servo_PWM_Start();
-	SetJointAngle(Servo_Ultrasonic,93);
+	//SetJointAngle(Servo_Ultrasonic,93);
 	SetJointAngle(Servo_Pan,pan_angle);
 	SetJointAngle(Servo_Pitch,pitch_angle);
 	printf("Hello\n");
@@ -261,10 +261,14 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
-	while(1)
+	int i=0;
+	while(i<10)
 	{
-		brake(1);
 		BEEPER_SET;
+		brake(50);
+		BEEPER_RESET;
+		brake(50);
+		i++;
 	}
 	
   /* USER CODE END Error_Handler_Debug */
