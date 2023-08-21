@@ -35,7 +35,7 @@ void SetMotorSpeed(unsigned char ucChannel,signed char cSpeed)
 		
 	switch(ucChannel)
 	{
-		case 0://右轮
+		case MOTOR_RIGHT://右轮
 			if (cSpeed>0) //正转
 			{
 				sPWM = 3601 - cSpeed*36;
@@ -56,7 +56,7 @@ void SetMotorSpeed(unsigned char ucChannel,signed char cSpeed)
 			}
 			break;
 			
-		case 1://左轮
+		case MOTOR_LEFT://左轮
 			if (cSpeed>0) //正转
 			{	
 				sPWM = 3601 - cSpeed*36;
@@ -82,8 +82,8 @@ void SetMotorSpeed(unsigned char ucChannel,signed char cSpeed)
 //前进时输入相对速度，以前进为正方向
 void forward(signed char speed, int time)//前进
 {
-	SetMotorSpeed(1,speed);//左轮正
-	SetMotorSpeed(0,speed);//右轮正
+	SetMotorSpeed(MOTOR_LEFT,speed);//左轮正
+	SetMotorSpeed(MOTOR_RIGHT,speed);//右轮正
 	HAL_Delay(time);                 //时间为毫秒
 }
 
@@ -91,15 +91,15 @@ void forward(signed char speed, int time)//前进
 void back(signed char speed,int time) //后退
 {
 
-	  SetMotorSpeed(1,-speed);//左轮负
-	  SetMotorSpeed(0,-speed);//右轮负
+	  SetMotorSpeed(MOTOR_LEFT,-speed);//左轮负
+	  SetMotorSpeed(MOTOR_RIGHT,-speed);//右轮负
 		HAL_Delay(time);                 //时间为毫秒  
 }
 
 void brake(int time)//刹车
 {
-	SetMotorSpeed(1,0);//左轮为0
-	SetMotorSpeed(0,0);//右轮为0
+	SetMotorSpeed(MOTOR_LEFT,0);//左轮为0
+	SetMotorSpeed(MOTOR_RIGHT,0);//右轮为0
   RIGHT_MOTOR_RESET;
   LEFT_MOTOR_RESET;
 	HAL_Delay(time);             //时间为毫秒  
@@ -107,29 +107,29 @@ void brake(int time)//刹车
 
 void turn_left(signed char speed,int time) //左转弯
 {
-	  SetMotorSpeed(1,0);//左轮不动
-	  SetMotorSpeed(0,speed);  //右轮正
+	  SetMotorSpeed(MOTOR_LEFT,0);//左轮不动
+	  SetMotorSpeed(MOTOR_RIGHT,speed);  //右轮正
 		HAL_Delay(time);            //时间为毫秒  
 }
 
 void spin_left(signed char speed,int time) //左旋转
 {
-		SetMotorSpeed(1,100-speed);//左轮负
-	  SetMotorSpeed(0,speed-100);//右轮正
+		SetMotorSpeed(MOTOR_LEFT,100-speed);//左轮负
+	  SetMotorSpeed(MOTOR_RIGHT,speed-100);//右轮正
 		HAL_Delay(time);            //时间为毫秒  
 }
 
 void turn_right(signed char speed,int time)  //右转弯
 {
-	  SetMotorSpeed(1,speed);     //左轮正
-	  SetMotorSpeed(0,0);          //右轮不动
+	  SetMotorSpeed(MOTOR_LEFT,speed);     //左轮正
+	  SetMotorSpeed(MOTOR_RIGHT,0);          //右轮不动
 		HAL_Delay(time);                   //时间为毫秒  
 }
 
 void spin_right(signed char speed,int time) //右旋转函数
 {
-		SetMotorSpeed(1,speed-100); //左轮正
-	  SetMotorSpeed(0,100-speed);//右轮负
+		SetMotorSpeed(MOTOR_LEFT,speed-100); //左轮正
+	  SetMotorSpeed(MOTOR_RIGHT,100-speed);//右轮负
 		HAL_Delay(time);                    //时间为毫秒  
 }
 

@@ -30,6 +30,9 @@ void command_run(char ctrl_comm, int speed);
 //#define Right_Motor_PWM_Pin 			GPIO_PIN_9
 //#define Right_Motor_PWM_GPIO_Port GPIOB
 
+#define MOTOR_LEFT			1
+#define MOTOR_RIGHT			0
+
 #define LEFT_MOTOR_SET							HAL_GPIO_WritePin(Left_Motor_GPIO_Port,Left_Motor_Pin,GPIO_PIN_SET)
 #define LEFT_MOTOR_RESET						HAL_GPIO_WritePin(Left_Motor_GPIO_Port,Left_Motor_Pin,GPIO_PIN_RESET)
 

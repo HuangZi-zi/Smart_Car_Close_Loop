@@ -14,6 +14,7 @@
 "smart_car\usart.o"
 "smart_car\stm32f1xx_it.o"
 "smart_car\stm32f1xx_hal_msp.o"
+"smart_car\pid.o"
 "smart_car\stm32f1xx_hal_gpio_ex.o"
 "smart_car\stm32f1xx_hal_tim.o"
 "smart_car\stm32f1xx_hal_tim_ex.o"
