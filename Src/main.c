@@ -202,10 +202,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	//printf("distance: %.2f/n",UltrasonicWave_Distance);
 	if (UltrasonicWave_Distance<=8.0)
 	{
-		//Error_Handler_Distance();
-		BEEPER_SET;
-		brake(500);
-		BEEPER_RESET;
+		Error_Handler_Distance();
 	}
 }
 
@@ -243,14 +240,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 void Error_Handler_Distance(void)
 {
-	while(1)
-	{
 		BEEPER_SET;
 		brake(500);
 		BEEPER_RESET;
-		brake(500);
-	}
 }
+
 /* USER CODE END 4 */
 
 /**

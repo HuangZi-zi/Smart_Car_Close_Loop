@@ -33,8 +33,8 @@
 extern UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN Private defines */
-#define USART2_MAX_RECV_LEN		3				//最大接收缓存字节数
-#define USART2_MAX_SEND_LEN		3				//最大发送缓存字节数
+#define USART2_MAX_RECV_LEN		8				//最大接收缓存字节数
+#define USART2_MAX_SEND_LEN		8				//最大发送缓存字节数
 
 /* USER CODE END Private defines */
 

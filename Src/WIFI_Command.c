@@ -24,6 +24,11 @@ char receive_command()
 				USART2_RX_STA=0;
 				memset(USART2_RX,0,sizeof(USART2_RX));
 			}
+			else
+			{
+				USART2_RX_STA=0;
+				memset(USART2_RX,0,sizeof(USART2_RX));
+			}
 		}	
 	return comm;	
 }
