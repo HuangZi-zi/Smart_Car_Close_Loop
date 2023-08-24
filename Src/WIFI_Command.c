@@ -11,24 +11,28 @@
 char receive_command()
 {
 	char comm=COMM_BRAKE;
+	
 	uint8_t reclen=0;
 	if(USART2_RX_STA!=0)	//接收到一次数据了
 		{
-			reclen=USART2_RX_STA&0X7FFF;	//得到数据长度
-			USART2_RX[reclen]=0;	 				//加入结束符
+//			reclen=USART2_RX_STA&0X7FFF;	//得到数据长度
+//			USART2_RX[reclen]=0;	 				//加入结束符
 //			printf("%s!\n",USART2_RX);
 //			printf("%d!\n",reclen);
-			if(reclen==1)
-			{	
+//			if(reclen==1)
+//			{	
+//				comm = USART2_RX[0];
+//				USART2_RX_STA=0;
+//				memset(USART2_RX,0,sizeof(USART2_RX));
+//			}
+//			else
+//			{
+//				USART2_RX_STA=0;
+//				memset(USART2_RX,0,sizeof(USART2_RX));
+//			}
 				comm = USART2_RX[0];
 				USART2_RX_STA=0;
 				memset(USART2_RX,0,sizeof(USART2_RX));
-			}
-			else
-			{
-				USART2_RX_STA=0;
-				memset(USART2_RX,0,sizeof(USART2_RX));
-			}
 		}	
 	return comm;	
 }

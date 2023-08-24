@@ -33,7 +33,7 @@
 extern UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN Private defines */
-#define USART2_MAX_RECV_LEN		8				//最大接收缓存字节数
+#define USART2_MAX_RECV_LEN		21				//最大接收缓存字节数
 #define USART2_MAX_SEND_LEN		8				//最大发送缓存字节数
 
 /* USER CODE END Private defines */
@@ -43,7 +43,7 @@ void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN Prototypes */
 extern uint8_t USART2_RX_BUFF; 																	//接收缓存
 extern uint8_t USART2_RX[USART2_MAX_RECV_LEN];									//接收储存
-extern uint16_t USART2_RX_STA;																	//接收数据计数
+extern uint16_t USART2_RX_STA;																	//接收数据长度
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

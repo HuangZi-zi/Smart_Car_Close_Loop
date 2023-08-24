@@ -65,6 +65,7 @@ extern uint16_t USART2_RX_STA;																//接收数据计数
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+static void MX_NVIC_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -110,9 +111,15 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM5_Init();
   MX_TIM8_Init();
+
+  /* Initialize interrupts */
+  MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
 	//开启中断
-	HAL_UART_Receive_IT(&huart2,(uint8_t *)&USART2_RX_BUFF, 1);//开启接收中断
+	__HAL_UART_ENABLE_IT(&huart2,UART_IT_IDLE);//使能IDLE中断
+	HAL_UARTEx_ReceiveToIdle_DMA(&huart2,USART2_RX,1);//开启DMA接收
+	
+	//HAL_UART_Receive_IT(&huart2,(uint8_t *)&USART2_RX_BUFF, 1);//开启接收中断
 	HAL_TIM_Base_Start_IT(&htim8);//开启测速中断
 	
 	//开启输入捕获
@@ -129,6 +136,7 @@ int main(void)
 	//SetJointAngle(Servo_Ultrasonic,93);
 	SetJointAngle(Servo_Pan,pan_angle);
 	SetJointAngle(Servo_Pitch,pitch_angle);
+	
 	printf("Hello\n");
   while (1)
   {
@@ -184,6 +192,20 @@ void SystemClock_Config(void)
   }
 }
 
+/**
+  * @brief NVIC Configuration.
+  * @retval None
+  */
+static void MX_NVIC_Init(void)
+{
+  /* DMA1_Channel6_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel6_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel6_IRQn);
+  /* USART2_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(USART2_IRQn, 2, 3);
+  HAL_NVIC_EnableIRQ(USART2_IRQn);
+}
+
 /* USER CODE BEGIN 4 */
 
 //GPIO中断服务程序，用于处理超声波避障
@@ -206,20 +228,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	}
 }
 
-//串口2中断服务程序，用于处理串口2接收
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-	if(huart==&huart2)//接收到数据
-	{	  
-		USART2_RX[USART2_RX_STA++]=USART2_RX_BUFF;		//记录接收到的值
-//		if(USART2_RX[USART2_RX_STA-1]== 0x0A)		//接收完毕
-//		{
-//			USART2_RX_STA=0;
-//		}			 
-		//printf("%s!\n",USART2_RX);
-		HAL_UART_Receive_IT(&huart2, (uint8_t *)&USART2_RX_BUFF, 1);   //再开启接收中断
-	}
-}
+
 
 //定时计数器8溢出中断服务程序
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
