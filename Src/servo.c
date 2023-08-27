@@ -42,14 +42,14 @@ int pitch_angle = 5;
 
 void pan_left()//左右舵机靠左
 {
-    pan_angle =pan_angle+10;
+    pan_angle =pan_angle+2;
 	  if(pan_angle >= 175)
 			pan_angle = 175;	
 		SetJointAngle(Servo_Pan,pan_angle);
 }
 void pan_right()//左右舵机靠右
 {
-  	pan_angle =pan_angle-10;
+  	pan_angle =pan_angle-2;
 	  if(pan_angle <= 1)
 			pan_angle = 1;	
 		SetJointAngle(Servo_Pan,pan_angle);
@@ -57,14 +57,14 @@ void pan_right()//左右舵机靠右
 void pitch_up()//上下舵机上
 {
  
-    pitch_angle =pitch_angle-10;
+    pitch_angle =pitch_angle-2;
 	  if(pitch_angle <= 1)
 			pitch_angle = 1;	
 		SetJointAngle(Servo_Pitch,pitch_angle);
 }
 void pitch_down()//上下舵机下
 {
-    pitch_angle = pitch_angle+10;
+    pitch_angle = pitch_angle+2;
 	  if(pitch_angle >= 175)
 			pitch_angle = 175;	
 		SetJointAngle(Servo_Pitch,pitch_angle);

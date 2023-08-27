@@ -5,6 +5,7 @@
 #include "tim.h"
 #include "IR_Tracing.h"
 #include "servo.h"
+#include "WIFI_Command.h"
 
 //º¯ÊıÉùÃ÷
 void Motor_PWM_Start(void);

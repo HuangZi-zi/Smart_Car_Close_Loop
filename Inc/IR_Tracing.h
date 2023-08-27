@@ -2,6 +2,8 @@
 #define __IR_TRACING_H_
 
 #include "main.h"
+#include "motor.h"
+
 //#define Tracing_L_Pin 				GPIO_PIN_0
 //#define Tracing_L_GPIO_Port 	GPIOB
 //#define Tracing_R_Pin 				GPIO_PIN_0

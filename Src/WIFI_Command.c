@@ -12,7 +12,7 @@ char receive_command()
 {
 	char comm=COMM_BRAKE;
 	
-	uint8_t reclen=0;
+	//uint8_t reclen=0;
 	if(USART2_RX_STA!=0)	//接收到一次数据了
 		{
 //			reclen=USART2_RX_STA&0X7FFF;	//得到数据长度
@@ -33,6 +33,10 @@ char receive_command()
 				comm = USART2_RX[0];
 				USART2_RX_STA=0;
 				memset(USART2_RX,0,sizeof(USART2_RX));
+				if(comm==COMM_IR)
+				{
+					comm=TracingRun();
+				}
 		}	
 	return comm;	
 }

@@ -148,8 +148,12 @@ int main(void)
 		//printf("%f\n",UltrasonicWave_Distance);
 		//HAL_Delay(500);
 
-		//command_run(TracingRun(),40);
-		//receive_command();
+		//command_run(TracingRun(),50);
+		
+//		command_run(COMM_FORWARD,50);
+//		HAL_Delay(300);
+//		command_run(COMM_BRAKE,50);
+//		HAL_Delay(300);
 		command_run(receive_command(),50);
 	}
   /* USER CODE END 3 */

@@ -1,9 +1,8 @@
 #include "IR_Tracing.h"
-#include "main.h"
-#include "motor.h"
+
 
 char ctrl_comm = COMM_BRAKE;			//控制指令
-char ctrl_comm_last = COMM_BRAKE;	//上一次的指令
+//char ctrl_comm_last = COMM_BRAKE;	//上一次的指令
 
 
 char TracingRun(void)
@@ -40,9 +39,10 @@ char TracingRun(void)
 //	else if (READ_TRACING_L == BLACK_AREA && READ_TRACING_M == BLACK_AREA & READ_TRACING_L == WHITE_AREA)
 //		ctrl_comm = COMM_LEFT;
 //	else ctrl_comm = COMM_BRAKE;
-	if(ctrl_comm_last != ctrl_comm)
-	{
-			ctrl_comm_last = ctrl_comm;
-	}
+
+//	if(ctrl_comm_last != ctrl_comm)
+//	{
+//			ctrl_comm_last = ctrl_comm;
+//	}
 	return ctrl_comm;
 }

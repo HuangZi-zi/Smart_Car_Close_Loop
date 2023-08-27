@@ -32,4 +32,9 @@ smart_car\pid.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 smart_car\pid.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 smart_car\pid.o: ../Inc/tim.h
 smart_car\pid.o: ../Inc/IR_Tracing.h
+smart_car\pid.o: ../Inc/motor.h
 smart_car\pid.o: ../Inc/servo.h
+smart_car\pid.o: ../Inc/WIFI_Command.h
+smart_car\pid.o: ../Inc/usart.h
+smart_car\pid.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+smart_car\pid.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

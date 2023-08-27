@@ -8,6 +8,8 @@
 #include "servo.h"
 #include "stdio.h"
 
+#define COMM_IR				'H'//∆Ù∂Ø∫ÏÕ‚—∞º£
+
 char receive_command(void);
 
 #endif

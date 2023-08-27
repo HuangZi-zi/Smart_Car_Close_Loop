@@ -34,10 +34,11 @@ smart_car\main.o: ../Inc/usart.h
 smart_car\main.o: ../Inc/gpio.h
 smart_car\main.o: ../Inc/motor.h
 smart_car\main.o: ../Inc/IR_Tracing.h
+smart_car\main.o: ../Inc/motor.h
 smart_car\main.o: ../Inc/servo.h
+smart_car\main.o: ../Inc/WIFI_Command.h
+smart_car\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+smart_car\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 smart_car\main.o: ../Inc/key.h
 smart_car\main.o: ../Inc/beeper.h
 smart_car\main.o: ../Inc/UltrasonicWave.h
-smart_car\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-smart_car\main.o: ../Inc/WIFI_Command.h
-smart_car\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

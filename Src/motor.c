@@ -140,6 +140,7 @@ void spin_right(signed char speed,int time) //右旋转函数
 //#define COMM_RIGHT 			'D'//右转
 //#define COMM_SPIN_LEFT	'F'//左旋转
 //#define COMM_SPIN_RIGHT	'G'//右旋转
+//#define COMM_IR					'H'//启动红外寻迹
 
 void command_run(char ctrl_comm, int speed)
 {
@@ -147,11 +148,11 @@ void command_run(char ctrl_comm, int speed)
 		{
 			case COMM_FORWARD:    forward(speed,30);break;
 			case COMM_BACK:  			back(speed,30);break;
-			case COMM_LEFT:  			turn_left(speed+20,30);break;
-			case COMM_RIGHT: 			turn_right(speed+20,30);break;
+			case COMM_LEFT:  			turn_left(speed,50);break;
+			case COMM_RIGHT: 			turn_right(speed,50);break;
 			case COMM_BRAKE:  		brake(30);break;
-			case COMM_SPIN_LEFT:	spin_left(speed+10,30);break;
-			case COMM_SPIN_RIGHT:	spin_right(speed+10,30);break;
+			case COMM_SPIN_LEFT:	spin_left(speed,40);break;
+			case COMM_SPIN_RIGHT:	spin_right(speed,40);break;
 			case 'L':							pan_left();break;
 			case 'I':							pan_right();break;
 			case 'J':							pitch_up();break;
